@@ -16,7 +16,12 @@ export default class MessageBox extends React.Component {
         'Lorem ipsum dolor sit amet',
         'Consectetur adipisicing elit',
       ]
-    }
+    };
+    this.handleAdd = this.handleAdd.bind(this); // ES6 require you bind manually 'this'
+  }
+
+  handleAdd(e) {
+    console.log(this.refs);
   }
 
   render() {
@@ -31,6 +36,11 @@ export default class MessageBox extends React.Component {
     return (
       <div className="container jumbotron" style={inlineStyles}>
         <h1>{this.props.titleMessage}</h1>
+        <div className="form-inline">
+          <input className="form-control"></input>
+          <button className="btn btn-primary" onClick={this.handleAdd}>Add</button>
+        </div>
+
         {messages}
       </div>
     );
