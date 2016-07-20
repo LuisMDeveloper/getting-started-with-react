@@ -21,7 +21,11 @@ export default class MessageBox extends React.Component {
   }
 
   handleAdd(e) {
-    console.log(this.refs);
+    let newMessage = this.refs.newMessage.value;
+    let updatedMessages = this.state.messages.concat([newMessage]);
+    this.setState({
+      messages: updatedMessages
+    });
   }
 
   render() {
@@ -37,7 +41,7 @@ export default class MessageBox extends React.Component {
       <div className="container jumbotron" style={inlineStyles}>
         <h1>{this.props.titleMessage}</h1>
         <div className="form-inline">
-          <input className="form-control"></input>
+          <input ref="newMessage" type="text" className="form-control"></input>
           <button className="btn btn-primary" onClick={this.handleAdd}>Add</button>
         </div>
 
