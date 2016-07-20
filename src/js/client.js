@@ -1,13 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class Layout extends React.Component {
-  render() {
-    return (
-      <h1>Hello World!</h1>
-    );
-  }
-}
+import MessageBox from "./components/MessageBox"
 
 const app = document.getElementById('app');
-ReactDOM.render(<Layout/>, app);
+ReactDOM.render(<MessageBox/>, app);
