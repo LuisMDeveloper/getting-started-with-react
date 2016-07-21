@@ -1,4 +1,5 @@
 import React from "react";
+import { array } from 'lodash';
 
 import SubMessage from "./SubMessage"
 
@@ -18,11 +19,19 @@ export default class MessageBox extends React.Component {
       ]
     };
     this.handleAdd = this.handleAdd.bind(this); // ES6 require you bind manually 'this'
+    this.deleteMessage = this.deleteMessage.bind(this);
   }
 
   handleAdd(e) {
     let newMessage = this.refs.newMessage.value;
     let updatedMessages = this.state.messages.concat([newMessage]);
+    this.setState({
+      messages: updatedMessages
+    });
+  }
+
+  deleteMessage(message) {
+    let updatedMessages = _.without(this.state.messages, message);
     this.setState({
       messages: updatedMessages
     });
@@ -34,7 +43,7 @@ export default class MessageBox extends React.Component {
     };
 
     var messages = this.state.messages.map((message) => {
-      return <SubMessage message={message} />
+      return <SubMessage message={message} onDelete={this.deleteMessage}/>
     });
 
     return (
